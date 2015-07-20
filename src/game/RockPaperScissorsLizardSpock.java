@@ -108,24 +108,25 @@ import java.util.*;
  * <li>For instance, such a report might be displayed in this way:
  * <pre>
 
- <b>WINNER -- HUMAN</b>
- 27 Human wins
- --------------
- 12 Human wins (threw ROCK) and computer loses (threw SCISSORS).
- 09 Human wins (threw SCISSORS) and computer loses (threw PAPER).
- 06 Human wins (threw PAPER) and computer loses (threw ROCK).
+		<b>WINNER -- HUMAN</b>
 
- 22 Computer wins
- -----------------
- 08 Computer wins (threw ROCK) and human loses (threw SCISSORS).
- 09 Computer wins (threw SCISSORS) and human loses (threw PAPER).
- 07 Computer wins (threw PAPER) and human loses (threw ROCK).
+        27 Human wins
+        --------------
+        12 Human wins (threw ROCK) and computer loses (threw SCISSORS).
+        09 Human wins (threw SCISSORS) and computer loses (threw PAPER).
+        06 Human wins (threw PAPER) and computer loses (threw ROCK).
 
- 31 Ties (Nobody won!)
- ----------------------
- 11 It is a tie -- computer and human both threw ROCK.
- 13 It is a tie -- computer and human both threw SCISSORS.
- 07 It is a tie -- computer and human both threw PAPER.
+        22 Computer wins
+        -----------------
+        08 Computer wins (threw ROCK) and human loses (threw SCISSORS).
+        09 Computer wins (threw SCISSORS) and human loses (threw PAPER).
+        07 Computer wins (threw PAPER) and human loses (threw ROCK).
+
+        31 Ties (Nobody won!)
+        ----------------------
+        11 It is a tie -- computer and human both threw ROCK.
+        13 It is a tie -- computer and human both threw SCISSORS.
+        07 It is a tie -- computer and human both threw PAPER.
 
  * </pre>
  * </li>
@@ -170,16 +171,25 @@ import java.util.*;
  * rules, but adds complexity and thus decrease the chance of a tie using these rules:
  * <pre>
 
- Scissors cuts Paper
- Paper covers Rock
- Rock crushes Lizard
- Lizard poisons Spock
- Spock smashes Scissors
- Scissors decapitates Lizard
- Lizard eats Paper
- Paper disproves Spock
- Spock vaporizes Rock
- (and as it always has) Rock crushes scissors
+                    Scissors cuts Paper
+
+                    Paper covers Rock
+
+                    Rock crushes Lizard
+
+                    Lizard poisons Spock
+
+                    Spock smashes Scissors
+
+                    Scissors decapitates Lizard
+
+                    Lizard eats Paper
+
+                    Paper disproves Spock
+
+                    Spock vaporizes Rock
+
+                    (and as it always has) Rock crushes scissors
  * </pre>
  *
  * As it is currently written, I would just need to add to the enum THROWS; modify the
@@ -212,13 +222,14 @@ import java.util.*;
  * free online web application. See it in action at <a href = "http://www.y8.com/games/rock_paper_scissors_lizard_spock"> this Games site</a>
  *
  *
+
  */
-public class RockPaperScissors {
+public class RockPaperScissorsLizardSpock {
 
     /**
      * The constructor `game'.
      */
-    private static RockPaperScissors game = new RockPaperScissors();
+    private static RockPaperScissorsLizardSpock game = new RockPaperScissorsLizardSpock();
 
     /**
      * The counter that keeps track of the current ROCK-PAPER-SCISSORS round.
@@ -265,6 +276,8 @@ public class RockPaperScissors {
          * The SCISSORS.
          */
         SCISSORS,
+        LIZARD,
+        SPOCK,
         /**
          * The QUIT.
          */
@@ -286,19 +299,23 @@ public class RockPaperScissors {
     /**
      * The constant QUIT.
      */
-    private static final String QUIT = Throws.values()[3].toString();
+    private static final String LIZARD = Throws.values()[3].toString();
+
+    private static final String SPOCK = Throws.values()[4].toString();
+
+    private static final String QUIT = Throws.values()[5].toString();
 
     /**
      * The constant WANNA_PLAY.
      */
     private static final String WANNA_PLAY = "Please enter " + ROCK + ", "
-            + PAPER + ", or " + SCISSORS + " (or, to quit the game, enter "
-            + QUIT + ") :";
+            + PAPER + ", " + SCISSORS  + ", " + LIZARD + ", or " + SPOCK
+            + " (or, to quit the game, enter " + QUIT + ") :";
 
     /**
      * The Human's throw.
      */
-    private String humanThrowParam = ROCK;
+    private String humanThrowParam = SPOCK;
 
     /**
      * Gets the current throw value (for human).
@@ -322,9 +339,13 @@ public class RockPaperScissors {
      * The constant WIN_VALUES -- representing the winning moves.
      */
     private static final String[][] WIN_VALUES = new String[][]{
-            {ROCK, SCISSORS},
-            {PAPER, ROCK},
-            {SCISSORS, PAPER}
+
+            {ROCK, SCISSORS},{ROCK, LIZARD},
+            {PAPER, ROCK}, {PAPER, SPOCK},
+            {SCISSORS, PAPER}, {SCISSORS, LIZARD},
+            {LIZARD, SPOCK},{LIZARD, PAPER},
+            {SPOCK, SCISSORS},{SPOCK, ROCK},
+
     };
 
     /**
@@ -334,9 +355,11 @@ public class RockPaperScissors {
     constraint removed or a more complex version of the game is proposed
     */
     private static final String[][] LOSE_VALUES = new String[][]{
-            {SCISSORS, ROCK},
-            {ROCK, PAPER},
-            {PAPER, SCISSORS}
+            {SCISSORS, ROCK},{LIZARD, ROCK},
+            {ROCK, PAPER}, {SPOCK, PAPER},
+            {PAPER, SCISSORS},{LIZARD, SCISSORS},
+            {SPOCK, LIZARD}, {PAPER, LIZARD},
+            {SCISSORS, SPOCK}, {ROCK, SPOCK}
     };
 
     /**
@@ -348,7 +371,9 @@ constraint removed or a more complex version of the game is proposed
     private static final String[][] TIE_VALUES = new String[][]{
             {ROCK, ROCK},
             {PAPER, PAPER},
-            {SCISSORS, SCISSORS}
+            {SCISSORS, SCISSORS},
+            {LIZARD, LIZARD},
+            {SPOCK, SPOCK}
     };
 
     /**
@@ -367,25 +392,34 @@ constraint removed or a more complex version of the game is proposed
         --------------------
         Enum THROW with values  ROCK, PAPER, SCISSORS is defined
         Enum RESULT with values WINS, LOSES, and TIES is defined
+
         MOVES is defined as Array with THROW value from Human, THROW value from
             Computer
+
         WINS is a String[][] containing all the winning MOVES
         LOSES is a String[][] containing all the losing MOVES
         TIES  a String[][] containing all the tie MOVES
+
         HashListMap hm is declared and initialized as a new empty map
+
         Declare and initialize an int roundNumber to 0
+
         Set String version of THROW to any non-QUIT value (use Random?)
+
         While not QUIT
             Human enters choice of THROW (as String) on command-line:
                 or enters QUIT
             Computer generates Random int from 1-3 & that's used to choose THROW
+
             MOVES is populated with the Human, Computer THROW
             Return RESULTS from IsItWinning(MOVES) by seeing if MOVES is in
                 WINS, LOSES, or TIES using a for loop
             Increment RoundNumber
+
             Put String consisting of MOVES and RESULT as Key and counter as
                 Value in the map `hm'.
         [ End the While loop by declaring "QUIT']
+
          Use Iterator to essentially do a For Loop on Map to gather all results
          Use that data to print out results for all rounds -- who won each
             round and Throw vs Throw information, and a cumulative count for
@@ -405,28 +439,30 @@ constraint removed or a more complex version of the game is proposed
                 game.doQuit();
             }
 
-            while (
-                    !gameThrow.equals(ROCK)
-                            && !gameThrow.equals(PAPER)
-                            && !gameThrow.equals(SCISSORS)
-                    ) {
-                game.blurb(console, "\nOops! Try again.");
-                gameThrow = game.getHumanThrowParam().toUpperCase();
+                while (
+                        !gameThrow.equals(ROCK)
+                                && !gameThrow.equals(PAPER)
+                                && !gameThrow.equals(SCISSORS)
+                                && !gameThrow.equals(LIZARD)
+                                && !gameThrow.equals(SPOCK)
+                        ) {
+                    game.blurb(console, "\nOops! Try again.");
+                    gameThrow = game.getHumanThrowParam().toUpperCase();
 
-                while (gameThrow.equals(QUIT)) {
-                    game.doQuit();
+                    while (gameThrow.equals(QUIT)) {
+                        game.doQuit();
+                    }
                 }
-            }
 
-            String randThrow = randomizeThrow();
+                String randThrow = randomizeThrow();
 
-            move.add(gameThrow);
-            move.add(randThrow);
+                move.add(gameThrow);
+                move.add(randThrow);
 
-            //convert ArrayList<String> to String[]
-            String[] arrayMove = move.toArray(new String[move.size()]);
+                //convert ArrayList<String> to String[]
+                String[] arrayMove = move.toArray(new String[move.size()]);
 
-            System.out.println(game.getRoundResult(arrayMove) + "\n");
+                System.out.println(game.getRoundResult(arrayMove) + "\n");
 
                 /*
                 Here is where, time permitting, I would use the hashMap to set the
@@ -435,14 +471,14 @@ constraint removed or a more complex version of the game is proposed
                  the human quits the game.
                 */
 
-            // clean-up
-            move.clear();
+                // clean-up
+                move.clear();
 
+            }
         }
-    }
-    /**
-     A bit heavy-handed -- but it certainly quits the game (by exiting the program).
-     */
+/**
+A bit heavy-handed -- but it certainly quits the game (by exiting the program).
+ */
     public void doQuit () {
         System.out.println("Quitter! You aren't afraid of a little computer,"
                 + " are you?");
@@ -476,7 +512,7 @@ constraint removed or a more complex version of the game is proposed
 
     /**
      * Displays who wins and who loses as well as
-     * the user and computer?s selections.
+     * the user and computer’s selections.
      *
      * @param move the move
      * @return the round result
