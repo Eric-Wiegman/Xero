@@ -1,6 +1,10 @@
 # Xero
 Coding Exercise to write a program that does RockPaperScissors
 
+<p>......................................................................................................</p>
+
+<b>*Table of Contents*</b>
+
 [CODING SPECIFICATION 1](#coding-specification)
 
 [Task Outline 1](#task-outline)
@@ -23,19 +27,13 @@ Coding Exercise to write a program that does RockPaperScissors
 
 [Better reporting of results 3](#better-reporting-of-results)
 
-[More clever solutions to the constraints of not allowing if / switch case / ternary 4](#more-clever-
-
-solutions-to-the-constraints-of-not-allowing-if-switch-case-ternary)
+[More clever solutions to the constraints of not allowing if / switch case / ternary 4](#more-clever-solutions-to-the-constraints-of-not-allowing-if-switch-case-ternary)
 
 [A simple web interface 4](#a-simple-web-interface)
 
-[Enhancements, Changes, or Variations on the Command-Line Game 5](#enhancements-changes-or-variations-on-
+[Enhancements, Changes, or Variations on the Command-Line Game 5](#enhancements-changes-or-variations-on-the-command-line-game)
 
-the-command-line-game)
-
-**This is a simple command-line java executable application that plays the user vs. the computer in many 
-
-rounds of *Rock, Paper, Scissors*. **
+**This is a simple command-line java executable application that plays the user vs. the computer in many rounds of *Rock, Paper, Scissors*. **
 ==========================================================================================================
 
 ====================================
@@ -94,7 +92,7 @@ INSTRUCTIONS
 
 5.  Run the jar file using the command line
 
-java -jar RockPaperScissors.jar
+<pre> -jar RockPaperScissors.jar </pre>
 
 ### Bill of Materials
 
@@ -104,49 +102,41 @@ A ZIP file has been included for your convenience. In it is:
 
 2.  A simple README text file, with these instructions
 
-3.  The Javadoc, in a directory *doc
-    *
+3.  The Javadoc, in a directory *doc*
     To access the API documentation, open the file doc/index.html in your favorite browser
 
 ### How to Play
 
 1.  For those who may not be familiar with the general concepts of the game,
-    please refer to the [Wikipedia](https://en.wikipedia.org/wiki/Rock-paper-scissors) article regarding 
+    please refer to the [Wikipedia](https://en.wikipedia.org/wiki/Rock-paper-scissors) article regarding *Rock-paper-scissors*
 
-*Rock-paper-scissors*
-
-2.  To play versus the computer, you obviously do not use hands as people do. Instead, you
-    type instructions.
+2.  To play versus the computer, you obviously do not use hands as people do.
+ Instead, you type instructions.
 
 3.  When you run the executable jar file, the command line prompt politely requests:
 
-Hi, I am ready to play a game. Please enter ROCK, PAPER, or SCISSORS (or, to quit the game, enter QUIT) :
+<pre>Hi, I am ready to play a game. Please enter ROCK, PAPER, or SCISSORS (or, to quit the game, enter QUIT) :</pre>
 
 1.  You always go first! Type in one of the words (without the quotes): "rock", "Paper", or "SCISSORS",
-    and then hit the Enter or Return key on your keyboard. Do not worry about capitalization -- the 
-
-computer is smart and will figure it out.
+    and then hit the Enter or Return key on your keyboard. Do not worry about capitalization -- the computer is smart and will figure it out.
 
 2.  As the prompt suggests, at any time you can decide you do not want to play any longer. To accomplish
-    that, you simply type in (without the quotes): "Quit" and then hit the Enter or Return key on your 
-
-keyboard.
+    that, you simply type in (without the quotes): "Quit" and then hit the Enter or Return key on your keyboard.
 
 3.  If you enter any other text, the command line prompt politely requests:
 
-Oops! Try again. Please enter ROCK, PAPER, or SCISSORS (or, to quit the game, enter QUIT) :
+<pre>Oops! Try again. Please enter ROCK, PAPER, or SCISSORS (or, to quit the game, enter QUIT) : </pre>
 
 1.  If that happens, either supply the proper word requested -- or type QUIT to exit the game.
 
 2.  Once the computer understands your input, it makes a random "throw" and gives you the results, such as 
 
 one of these:
-
-Round \#4: It is a tie -- computer and human both threw ROCK.
->
-Round \#5: Human wins (threw ROCK) and computer loses (threw SCISSORS).
->
-Round \#6: Computer wins (threw PAPER) and human loses (threw ROCK).
+<pre>
+Round #4: It is a tie -- computer and human both threw ROCK.
+Round #5: Human wins (threw ROCK) and computer loses (threw SCISSORS).
+Round #6: Computer wins (threw PAPER) and human loses (threw ROCK).
+</pre>
 
 1.  You then proceed to the next round, where you are once again asked to make your "throw" selection.
 
@@ -175,38 +165,23 @@ with the given constraints, if I had more time.
     a counter would be maintained to get the total number of wins, ties, and losses.
 
 4.  For instance, such a report might be displayed in this way:
-
-**WINNER -- HUMAN**
->
-27 Human wins
->
---------------
->
+<pre>
+**WINNER -- HUMAN**<br>
+27 Human wins<br>
 12 Human wins (threw ROCK) and computer loses (threw SCISSORS).
->
 09 Human wins (threw SCISSORS) and computer loses (threw PAPER).
->
 06 Human wins (threw PAPER) and computer loses (threw ROCK).
->
-22 Computer wins
->
------------------
->
+<br>
+22 Computer wins<br>
 08 Computer wins (threw ROCK) and human loses (threw SCISSORS).
->
 09 Computer wins (threw SCISSORS) and human loses (threw PAPER).
->
 07 Computer wins (threw PAPER) and human loses (threw ROCK).
->
-31 Ties (Nobody won!)
->
-----------------------
->
+<br>
+31 Ties (Nobody won!)<br>
 11 It is a tie -- computer and human both threw ROCK.
->
 13 It is a tie -- computer and human both threw SCISSORS.
->
 07 It is a tie -- computer and human both threw PAPER.
+</pre>
 
 #### More clever solutions to the constraints of not allowing if / switch case / ternary
 
@@ -244,9 +219,7 @@ with the given constraints, if I had more time.
     might change to "Go Again"
 
 7.  **Note:** There are many simple free, online web versions of the Rock-paper-scissors
-    game. ([One poorly written application](http://www.bigfishgames.com/online-games/5709/rock-paper-
-
-scissors-challenge/index.html) where the computer chooses first and then you
+    game. ([One poorly written application](http://www.bigfishgames.com/online-games/5709/rock-paper-scissors-challenge/index.html) where the computer chooses first and then you
     make your \[obviously\] winning choice second). There is no real market for such a product!
 
 #### Enhancements, Changes, or Variations on the Command-Line Game
@@ -255,27 +228,18 @@ scissors-challenge/index.html) where the computer chooses first and then you
     cover other variants such as "Rock Paper Scissors Lizard Spock" one. This game
     (developed by Sheldon Cooper on the TV show "The Big Bang Theory") follows similar
     rules, but adds complexity and thus decrease the chance of a tie using these rules:
-
+<pre>
 Scissors cuts Paper
-
 Paper covers Rock
-
 Rock crushes Lizard
-
 Lizard poisons Spock
-
 Spock smashes Scissors
-
 Scissors decapitates Lizard
-
 Lizard eats Paper
-
 Paper disproves Spock
-
 Spock vaporizes Rock
-
 (And as it always has) Rock crushes scissors
-
+</pre>
 As it is currently written, I would just need to add to the enum THROWS; modify the
 String arrays defining win, loss, and tie situations; change some online prompts; and,
 modify the while loops that check for valid input from those prompts. Not only would
@@ -305,6 +269,4 @@ so that future variants would be less work.
     as usual.
 
 A final comment. A "Rock Paper Scissors Lizard Spock" variant of the game already exists as a
-free online web application. See it in action at [this Games site]
-
-(http://www.y8.com/games/rock_paper_scissors_lizard_spock)
+free online web application. See it in action at [this Games site](http://www.y8.com/games/rock_paper_scissors_lizard_spock)
