@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 /**
  * The type Abstract rock paper scissors.
  */
 public abstract class AbstractRockPaperScissors {
+
+    /** The ArrayList 'move', used to store the human and computer moves. */
+    private static ArrayList<String> move = new ArrayList<String>();
 
     /**
      * Gets counter.
@@ -23,6 +25,20 @@ public abstract class AbstractRockPaperScissors {
      * @param counter the counter
      */
     abstract void setCounter(final int counter);
+
+    /**
+     * Throw initialization.
+     *
+     * @return the string
+     */
+    abstract String throwInitialization();
+
+    /**
+     * Construct stock phrase for console.
+     *
+     * @return the string
+     */
+    abstract String constructStockPhraseForConsole();
 
     /**
      * Define throw constants.
@@ -49,61 +65,6 @@ public abstract class AbstractRockPaperScissors {
      * @return two-dimensional array that defines the tying throw moves.
      */
     abstract String[][] getTyingThrows();
-
-    /**
-     * Throw initialization.
-     *
-     * @return the string
-     */
-    abstract String throwInitialization();
-
-    /**
-     * Construct stock phrase for console.
-     *
-     * @return the string
-     */
-    abstract String constructStockPhraseForConsole();
-
-    /**
-     * Ask human to play.
-     *
-     * @param console the console
-     * @param phrase the phrase
-     */
-    abstract void askHumanToPlay(Scanner console, String phrase);
-
-    /**
-     * Human does throw.
-     *
-     * @return the string
-     */
-    abstract String humanDoesThrow();
-
-    /**
-     * Is valid throw called.
-     *
-     * @param gameThrow the game throw
-     * @return the boolean
-     */
-    abstract boolean isValidThrowCalled(String gameThrow);
-
-    /**
-     * Throw is a quit.
-     *
-     * @param gameThrow the game throw
-     * @return the boolean
-     */
-    abstract boolean throwIsAQuit(String gameThrow);
-
-    /**
-     * Randomize throw.
-     *
-     * @return the string
-     */
-    abstract String randomizeThrow();
-
-    /** The ArrayList 'move', used to store the human and computer moves. */
-    private static ArrayList<String> move = new ArrayList<String>();
 
     /**
      * Interface initialization.
@@ -134,15 +95,15 @@ public abstract class AbstractRockPaperScissors {
             }
 
             while (
-                isValidThrowCalled(gameThrow)) {
+                    isValidThrowCalled(gameThrow)) {
 
-                    askHumanToPlay(console, append2);
+                askHumanToPlay(console, append2);
 
-                        gameThrow = humanDoesThrow();
+                gameThrow = humanDoesThrow();
 
-                        while (throwIsAQuit(gameThrow)) {
-                            doQuit();
-                        }
+                while (throwIsAQuit(gameThrow)) {
+                    doQuit();
+                }
             }
 
 
@@ -162,15 +123,34 @@ public abstract class AbstractRockPaperScissors {
     }
 
     /**
-     * A bit extreme -- but it certainly quits the game (by exiting the
-     * program).
+     * Ask human to play.
+     *
+     * @param console the console
+     * @param phrase the phrase
      */
-    public static void doQuit() {
-        System.out.println("Quitter! You aren't afraid of a little computer,"
-                + " are you?");
-        System.exit(-1);
+    abstract void askHumanToPlay(Scanner console, String phrase);
 
-    }
+    /**
+     * Human does throw.
+     *
+     * @return the string
+     */
+    abstract String humanDoesThrow();
+
+    /**
+     * Randomize throw.
+     *
+     * @return the string
+     */
+    abstract String randomizeThrow();
+
+    /**
+     * Is valid throw called.
+     *
+     * @param gameThrow the game throw
+     * @return the boolean
+     */
+    abstract boolean isValidThrowCalled(String gameThrow);
 
     /**
      * Displays who wins and who loses as well as
@@ -210,5 +190,24 @@ public abstract class AbstractRockPaperScissors {
                 + "Computer wins (threw " + computerMove + ") and "
                 + "human loses (threw " + userMove + ").";
         return resultForRound;
+    }
+
+    /**
+     * Throw is a quit.
+     *
+     * @param gameThrow the game throw
+     * @return the boolean
+     */
+    abstract boolean throwIsAQuit(String gameThrow);
+
+    /**
+     * A bit extreme -- but it certainly quits the game (by exiting the
+     * program).
+     */
+    public static void doQuit() {
+        System.out.println("Quitter! You aren't afraid of a little computer,"
+                + " are you?");
+        System.exit(-1);
+
     }
 }
